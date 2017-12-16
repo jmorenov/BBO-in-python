@@ -27,7 +27,11 @@ import ClearDups
 def BBO(objf,lb,ub,dim,PopSize,iters):
     # Defining the solution variable for saving output variables
     s=solution()
-    
+
+    # Initializing BBO parameters
+    pmutate = 0.01; # initial mutation probability
+    Keep = 2; # elitism parameter: how many of the best habitats to keep from one generation to the next
+
     # Initializing the parameters with default values
     fit = numpy.zeros(PopSize)
     EliteSolution=numpy.zeros((Keep,dim))
@@ -37,10 +41,6 @@ def BBO(objf,lb,ub,dim,PopSize,iters):
     lambda1=numpy.zeros(PopSize)
     MinCost=numpy.zeros(iters)
     Bestpos=numpy.zeros(dim)
-
-    # Initializing BBO parameters
-    pmutate = 0.01; # initial mutation probability
-    Keep = 2; # elitism parameter: how many of the best habitats to keep from one generation to the next
 
     # Initializing Population
     pos=numpy.random.uniform(0,1,(PopSize,dim)) *(ub-lb)+lb
@@ -74,12 +74,12 @@ def BBO(objf,lb,ub,dim,PopSize,iters):
             for j in range(dim):
                 if random.random() < lambda1[k]:
                     # Performing Roulette Wheel
-                    RandomNum = random.random() * sum(mu);
-                    Select = mu[1];
-                    SelectIndex = 0;
+                    RandomNum = random.random() * sum(mu)
+                    Select = mu[1]
+                    SelectIndex = 0
                     while (RandomNum > Select) and (SelectIndex < (PopSize-1)):
-                        SelectIndex = SelectIndex + 1;
-                        Select = Select + mu[SelectIndex];
+                        SelectIndex = SelectIndex + 1
+                        Select = Select + mu[SelectIndex]
                 
                     Island[k,j] = pos[SelectIndex,j]
                 else:
@@ -89,7 +89,7 @@ def BBO(objf,lb,ub,dim,PopSize,iters):
         for k in range(PopSize):
             for parnum in range(dim):
                 if pmutate > random.random():
-                    Island[k,parnum] = lb + (ub-lb) * random.random();
+                    Island[k,parnum] = lb + (ub-lb) * random.random()
 
         # Performing the bound checking
         for i in range(PopSize):
@@ -113,8 +113,8 @@ def BBO(objf,lb,ub,dim,PopSize,iters):
 
         # Replacing the individual of population with EliteSolution
         for k in range(Keep):
-            pos[(PopSize-1)-k,:] = EliteSolution[k,:];
-            fit[(PopSize-1)] = EliteCost[k];
+            pos[(PopSize-1)-k,:] = EliteSolution[k,:]
+            fit[(PopSize-1)] = EliteCost[k]
         
         # Removing the duplicate individuals
         pos=ClearDups.ClearDups(pos, PopSize, dim, ub, lb)
@@ -138,7 +138,7 @@ def BBO(objf,lb,ub,dim,PopSize,iters):
 
         # Displaying the best fitness of each iteration
         if (l%1==0):
-               print(['At iteration '+ str(l+1)+ ' the best fitness is '+ str(gBestScore)]);
+               print(['At iteration '+ str(l+1)+ ' the best fitness is '+ str(gBestScore)])
 
     timerEnd=time.time()  
     s.endTime=time.strftime("%Y-%m-%d-%H-%M-%S")
@@ -148,5 +148,3 @@ def BBO(objf,lb,ub,dim,PopSize,iters):
     s.objfname=objf.__name__
 
     return s
-         
-    

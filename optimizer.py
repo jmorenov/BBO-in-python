@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+    # -*- coding: utf-8 -*-
 """
 Python code of Biogeography-Based Optimization (BBO)
 Coded by: Raju Pal (emailid: raju3131.pal@gmail.com) and Himanshu Mittal (emailid: himanshu.mittal224@gmail.com)
@@ -58,8 +58,6 @@ F17=False
 F18=False
 F19=False
 
-
-
 optimizer=[BBO]
 benchmarkfunc=[F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,F13,F14,F15,F16,F17,F18,F19] 
         
@@ -84,8 +82,7 @@ Flag=False
 CnvgHeader=[]
 
 for l in range(0,Iterations):
-	CnvgHeader.append("Iter"+str(l+1))
-
+    CnvgHeader.append("Iter"+str(l+1))
 
 for i in range (0, len(optimizer)):
     for j in range (0, len(benchmarkfunc)):
@@ -104,8 +101,6 @@ for i in range (0, len(optimizer)):
                         writer.writerow(a)
                     out.close()
                 Flag=True # at least one experiment
-                
+
 if (Flag==False): # Faild to run at least one experiment
-    print("No Optomizer or Cost function is selected. Check lists of available optimizers and cost functions") 
-        
-        
+    print("No Optomizer or Cost function is selected. Check lists of available optimizers and cost functions")

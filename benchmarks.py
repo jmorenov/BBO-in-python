@@ -20,14 +20,17 @@ import math
 # define the function blocks
     
 def F1(x):
-    s=numpy.sum(x**2);
+    s=numpy.sum(x**2)
+
     return s
 
+def T1(x):
+    return x[0]
+
 def getFunctionDetails(a):
-    
     # [name, lb, ub, dim]
-    param = {  0: ["F1",-100,100,30],
-            }
+    param = {  0: ["F1",-100,100,30], }
+
     return param.get(a, "nothing")
 
 

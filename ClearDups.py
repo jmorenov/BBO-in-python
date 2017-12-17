@@ -27,4 +27,3 @@ def ClearDups(Population, PopSize, dim, MaxParValue, MinParValue):
                 parnum = numpy.ceil(dim * random.random())
                 Population[j,parnum] = MinParValue + (MaxParValue - MinParValue) * random.random();
     return Population
-                

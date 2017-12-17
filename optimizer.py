@@ -21,7 +21,6 @@ import csv
 import numpy
 import time
 
-
 def selector(algo,func_details,popSize,Iter):
     function_name=func_details[0]
     lb=func_details[1]
@@ -35,7 +34,6 @@ def selector(algo,func_details,popSize,Iter):
     
 # Select optimizers
 BBO= True # Code by Raju Pal & Himanshu Mittal
-
 
 # Select benchmark function
 F1=True

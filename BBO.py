@@ -17,20 +17,17 @@ Code compatible:
 from __future__ import division
 import random
 import numpy
-import math
 from solution import solution
 import time
 import ClearDups
-
-
         
 def BBO(objf,lb,ub,dim,PopSize,iters):
     # Defining the solution variable for saving output variables
     s=solution()
 
     # Initializing BBO parameters
-    pmutate = 0.01; # initial mutation probability
-    Keep = 2; # elitism parameter: how many of the best habitats to keep from one generation to the next
+    pmutate = 0.01 # initial mutation probability
+    Keep = 2 # elitism parameter: how many of the best habitats to keep from one generation to the next
 
     # Initializing the parameters with default values
     fit = numpy.zeros(PopSize)
@@ -40,7 +37,6 @@ def BBO(objf,lb,ub,dim,PopSize,iters):
     mu=numpy.zeros(PopSize)
     lambda1=numpy.zeros(PopSize)
     MinCost=numpy.zeros(iters)
-    Bestpos=numpy.zeros(dim)
 
     # Initializing Population
     pos=numpy.random.uniform(0,1,(PopSize,dim)) *(ub-lb)+lb
@@ -104,9 +100,6 @@ def BBO(objf,lb,ub,dim,PopSize,iters):
             fitness=objf(pos[i,:])
             fit[i]=fitness
 
-        # Sort the fitness
-        fitness_sorted=numpy.sort(fit)
-
         # Sort the population on fitness
         I=numpy.argsort(fit)
         pos=pos[I,:]
@@ -124,16 +117,12 @@ def BBO(objf,lb,ub,dim,PopSize,iters):
             fitness=objf(pos[i,:])
             fit[i]=fitness
 
-        # Sort the fitness
-        fitness_sorted=numpy.sort(fit)
-
         # Sort the population on fitness
         I=numpy.argsort(fit)  
         pos=pos[I,:]
 
         # Saving the best individual
         MinCost[l] = fit[1]
-        Bestpos=pos[1,:]
         gBestScore=fit[1]
 
         # Displaying the best fitness of each iteration
